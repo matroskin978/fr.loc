@@ -19,12 +19,12 @@ class Request
 
     public function isGet(): bool
     {
-        return $this->getMethod() == 'GET';
+        return $this->getMethod() === 'GET';
     }
 
     public function isPost(): bool
     {
-        return $this->getMethod() == 'POST';
+        return $this->getMethod() === 'POST';
     }
 
     public function isAjax(): bool
@@ -49,11 +49,7 @@ class Request
 
     protected function removeQueryString(): string
     {
-        if ($this->uri) {
-            $params = explode("?", $this->uri);
-            return trim($params[0], '/');
-        }
-        return "";
+        return strtok($this->uri, '?') ?: '';
     }
 
 }

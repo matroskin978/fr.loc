@@ -23,21 +23,15 @@ class Router
     {
     }
 
-    public function add($path, $callback, $method): self
+    public function add(string $path, \Closure|array $callback, string|array $method, $middleware = null, bool $needToken = true): static
     {
-        $path = trim($path, '/');
-        if (is_array($method)) {
-            $method = array_map('strtoupper', $method);
-        } else {
-            $method = [strtoupper($method)];
-        }
-
+        $method = (array) $method;
         $this->routes[] = [
-            'path' => "/$path",
+            'path' => '/' . trim($path, '/'),
             'callback' => $callback,
-            'middleware' => null,
-            'method' => $method,
-            'needToken' => true,
+            'method' => array_map('strtoupper', $method),
+            'middleware' => $middleware,
+            'needToken' => $needToken
         ];
         return $this;
     }
@@ -62,7 +56,7 @@ class Router
         $path = $this->request->getPath();
         $route = $this->matchRoute($path);
         if (false === $route) {
-            $this->response->setResponseCode(404);
+            http_response_code(404);
             echo '404 - Page not found';
             die;
         }
