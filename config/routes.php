@@ -11,4 +11,4 @@ $app->router->post('/register', [UserController::class, 'store']);
 $app->router->get('/login', [UserController::class, 'login']);
 
 
-//dump($app->router->getRoutes());
+//dump(__FILE__ . __LINE__, $app->router->getRoutes());

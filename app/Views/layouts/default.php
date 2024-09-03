@@ -33,7 +33,9 @@
     </div>
 </nav>
 
-<?= $this->content; ?>
+<?php get_alerts(); ?>
+<?= /** @var string $content */
+$content; ?>
 
 <script src="<?= base_url('/assets/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 </body>

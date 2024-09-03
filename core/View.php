@@ -21,7 +21,7 @@ class View
         if (is_file($view_file)) {
             ob_start();
             require $view_file;
-            $this->content = ob_get_clean();
+            $content = ob_get_clean();
         } else {
             abort("Not found view {$view_file}", 500);
         }
@@ -40,6 +40,20 @@ class View
             abort("Not found layout {$layout_file}", 500);
         }
         return '';
+    }
+
+    public function renderPartial($view, $data = []): string
+    {
+        extract($data);
+        $view_file = VIEWS . "/{$view}.php";
+
+        if (is_file($view_file)) {
+            ob_start();
+            require $view_file;
+            return ob_get_clean();
+        } else {
+            return "File {$view_file} not found";
+        }
     }
 
 }
