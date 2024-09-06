@@ -8,6 +8,8 @@
 
             <form action="<?= base_url('/register'); ?>" method="post">
 
+                <?= get_csrf_field(); ?>
+
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input name="name" type="text" class="form-control <?= get_validation_class('name'); ?>" id="name" placeholder="Name" value="<?= old('name'); ?>">
