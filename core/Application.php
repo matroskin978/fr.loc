@@ -2,6 +2,8 @@
 
 namespace PHPFramework;
 
+use Illuminate\Database\Capsule\Manager as Capsule;
+
 class Application
 {
 
@@ -23,6 +25,7 @@ class Application
         $this->view = new View(LAYOUT);
         $this->session = new Session();
         $this->generateCsrfToken();
+        $this->setDbConnection();
     }
 
     public function run(): void
@@ -35,6 +38,14 @@ class Application
         if (!session()->has('csrf_token')) {
             session()->set('csrf_token', md5(uniqid(mt_rand(), true)));
         }
+    }
+
+    public function setDbConnection()
+    {
+        $capsule = new Capsule();
+        $capsule->addConnection(DB_SETTINGS);
+        $capsule->setAsGlobal();
+        $capsule->bootEloquent();
     }
 
 }
