@@ -10,33 +10,56 @@ class UserController extends BaseController
 
     public function register()
     {
-//        dump(Capsule::insert("insert into users (name, email, password) values (?, ?, ?)", ['Petya', 'petya@mail.com', 'pass3']));
+        /*Capsule::enableQueryLog();
+        $user = User::query()->with('phones')->find(4);
+        dump($user);
+        dump($user->phones);
 
-        $users = Capsule::table('users')->select(['id', 'name'])->get();
+        dump(Capsule::getQueryLog());*/
+
+        /*$users = db()->query('select * from users where id > ?', [5])->get();
+        dump($users);
+
+        $users = db()->query('select * from users where id > ?', [5])->getAssoc('email');
+        dump($users);*/
+
+        /*$user = db()->query('select * from users where id = ?', [5])->get();
+        dump($user);
+
+        $user = db()->query('select * from users where id = ?', [5])->getOne();
+        dump($user);*/
+
+//        dump(db()->query('select count(*) from users')->getOne());
+//        dump(db()->query('select count(*) from users')->getColumn());
+
+//        $users = db()->findAll('users');
 //        dump($users);
 
-//        $users = Capsule::select('select * from users where id = ?', [3]);
-//        dump($users);
+//        $user = db()->findOne('users', 'nizyw@mailinator.com', 'email');
+//        dump($user);
 
-//        $user = Capsule::table('users')->select(['id', 'name'])->where('id', 2)->get();
-//        $user = Capsule::table('users')->select(['id', 'name'])->where('id', 2)->first();
-//        dump($user->name);
+//        $user = db()->findOrFail('users', 'nizyw@mailinator.com', 'email');
+//        dump($user);
 
-        /*$users2 = User::all();
-        dump($users2);
-        foreach ($users2 as $user) {
-            echo $user->name;
-        }*/
+//        db()->query('insert into phones (user_id, phone) values (?, ?)', [5, 5111]);
+//        dump(db()->getInsertId());
 
-        /*$users3 = User::query()->select(['id', 'name'])->where('id', '>', 1)->get();
-        dump($users3);
-        foreach ($users3 as $user) {
-            echo $user->name;
-        }*/
+//        db()->query('delete from phones where id > ?', [6]);
+//        dump(db()->rowCount());
+
+        try {
+            db()->beginTransaction();
+            db()->query('insert into phones (user_id, phone) values (?,?)', [10, 10111]);
+            db()->query('insert into users (name, email, password) values (?,?,?)', ['User 10', 'user10@mail.com', 111]);
+            db()->commit();
+        } catch (\PDOException $e) {
+            db()->rollBack();
+            dump($e);
+        }
+
 
         return view('user/register', [
             'title' => 'Register page',
-            'users' => $users,
         ]);
     }
 

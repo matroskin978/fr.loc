@@ -2,12 +2,6 @@
 
     <h1><?= $title ?? ''; ?></h1>
 
-    <?php foreach ($users as $user): ?>
-        <div>
-            ID: <?= $user->id; ?><br>
-            Name: <?= $user->name; ?><br>
-        </div>
-    <?php endforeach; ?>
 
     <div class="row">
 

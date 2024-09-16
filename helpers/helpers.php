@@ -20,6 +20,11 @@ function session(): \PHPFramework\Session
     return app()->session;
 }
 
+function db(): \PHPFramework\Database
+{
+    return app()->db;
+}
+
 function view($view = '', $data = [], $layout = ''): string|\PHPFramework\View
 {
     if ($view) {
