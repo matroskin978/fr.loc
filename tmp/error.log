@@ -1,1 +1,12 @@
-[2024-09-16 14:41:46] DB Error: SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)
+[2024-09-21 10:53:28] Error: Division by zero
+File: D:\Server6\OSPanel\home\fr.loc\app\Controllers\UserController.php
+Line: 12
+================
+[2024-09-21 10:53:35] Error: Division by zero
+File: D:\Server6\OSPanel\home\fr.loc\app\Controllers\UserController.php
+Line: 12
+================
+[2024-09-21 10:53:52] Error: Undefined variable $test
+File: D:\Server6\OSPanel\home\fr.loc\app\Controllers\UserController.php
+Line: 12
+================
