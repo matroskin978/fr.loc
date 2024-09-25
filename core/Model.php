@@ -68,6 +68,13 @@ abstract class Model
         if (!$labels) {
             $labels = $this->labels;
         }
+
+        Validator::addRule('unique', function ($field, $value, array $params, array $fields) {
+            $data = explode(',', $params[0]);
+            return !(db()->findOne($data[0], $value, $data[1]));
+            //dd($field, $value, $params, $data, $user);
+        }, 'must be unique');
+
         Validator::langDir(WWW . '/lang');
         Validator::lang('ru');
         $validator = new Validator($data);

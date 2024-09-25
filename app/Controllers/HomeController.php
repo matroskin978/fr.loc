@@ -12,6 +12,13 @@ class HomeController extends BaseController
         ]);
     }
 
+    function dashboard()
+    {
+        return view('dashboard', [
+            'title' => 'Dashboard page',
+        ]);
+    }
+
     public function contact()
     {
         return 'Contact page';
