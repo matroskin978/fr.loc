@@ -32,6 +32,9 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="<?= base_url('/login'); ?>">Login</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="<?= base_url('/users'); ?>">Users</a>
+                </li>
             </ul>
         </div>
     </div>

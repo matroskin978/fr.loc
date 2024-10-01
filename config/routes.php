@@ -15,6 +15,7 @@ $app->router->get('/dashboard', [HomeController::class, 'dashboard'])->middlewar
 $app->router->get('/register', [UserController::class, 'register'])->middleware(['guest']);
 $app->router->post('/register', [UserController::class, 'store'])->middleware(['guest']);
 $app->router->get('/login', [UserController::class, 'login'])->middleware(['guest']);
+$app->router->get('/users', [UserController::class, 'index']);
 
 
 //dump(__FILE__ . __LINE__, $app->router->getRoutes());
