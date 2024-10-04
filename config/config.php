@@ -27,3 +27,10 @@ const DB_SETTINGS = [
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ],
 ];
+
+const PAGINATION_SETTINGS = [
+    'perPage' => 3,
+    'midSize' => 2,
+    'maxPages' => 7,
+    'tpl' => 'pagination/base',
+];
