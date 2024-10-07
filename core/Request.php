@@ -6,9 +6,11 @@ class Request
 {
 
     public string $uri;
+    public string $rawUri;
 
     public function __construct($uri)
     {
+        $this->rawUri = $uri;
         $this->uri = trim(urldecode($uri), '/');
     }
 

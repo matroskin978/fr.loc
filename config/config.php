@@ -9,6 +9,7 @@ const APP = ROOT . '/app';
 const CORE = ROOT . '/core';
 const VIEWS = APP . '/Views';
 const ERROR_LOGS = ROOT . '/tmp/error.log';
+const CACHE = ROOT . '/tmp/cache';
 const LAYOUT = 'default';
 const PATH = 'https://fr.loc';
 

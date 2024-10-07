@@ -20,6 +20,11 @@ function session(): \PHPFramework\Session
     return app()->session;
 }
 
+function cache(): \PHPFramework\Cache
+{
+    return app()->cache;
+}
+
 function db(): \PHPFramework\Database
 {
     return app()->db;

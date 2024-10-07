@@ -13,8 +13,10 @@ class Application
     public Router $router;
     public View $view;
     public Session $session;
+    public Cache $cache;
     public Database $db;
     public static Application $app;
+    protected array $container = [];
 
     public function __construct()
     {
@@ -25,13 +27,20 @@ class Application
         $this->router = new Router($this->request, $this->response);
         $this->view = new View(LAYOUT);
         $this->session = new Session();
+        $this->cache = new Cache();
         $this->generateCsrfToken();
-        //$this->setDbConnection();
         $this->db = new Database();
     }
 
     public function run(): void
     {
+        //$this->cache->remove('/users');
+        /*$page = $this->cache->get($this->request->rawUri);
+        if (!$page) {
+            $page = $this->router->dispatch();
+            $this->cache->set($this->request->rawUri, $page);
+        }
+        echo $page;*/
         echo $this->router->dispatch();
     }
 
@@ -42,12 +51,14 @@ class Application
         }
     }
 
-    public function setDbConnection()
+    public function set($key, $value): void
     {
-        $capsule = new Capsule();
-        $capsule->addConnection(DB_SETTINGS);
-        $capsule->setAsGlobal();
-        $capsule->bootEloquent();
+        $this->container[$key] = $value;
+    }
+
+    public function get($key, $default = null)
+    {
+        return $this->container[$key] ?? $default;
     }
 
 }
