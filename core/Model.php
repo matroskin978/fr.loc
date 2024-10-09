@@ -18,14 +18,14 @@ abstract class Model
 
     public function save(): false|string
     {
-        foreach ($this->attributes as $k => $v) {
+        $attributes = $this->attributes;
+        foreach ($attributes as $k => $v) {
             if (!in_array($k, $this->fillable)) {
-                unset($this->attributes[$k]);
+                unset($attributes[$k]);
             }
         }
-        // insert into $tbl (f1, f2, ...) values (?,?,...)
-        // insert into $tbl (`f1`, `f2`, ...) values (:f1, :f2, ...)
-        $fields_keys = array_keys($this->attributes);
+
+        $fields_keys = array_keys($attributes);
         $fields = array_map(fn($field) => "`{$field}`", $fields_keys);
         $fields = implode(',', $fields);
         if ($this->timestamps) {
@@ -36,12 +36,12 @@ abstract class Model
         $placeholders = implode(',', $placeholders);
         if ($this->timestamps) {
             $placeholders .= ', :created_at, :updated_at';
-            $this->attributes['created_at'] = date("Y-m-d H:i:s");
-            $this->attributes['updated_at'] = date("Y-m-d H:i:s");
+            $attributes['created_at'] = date("Y-m-d H:i:s");
+            $attributes['updated_at'] = date("Y-m-d H:i:s");
         }
 
         $query = "insert into {$this->table} ($fields) values ($placeholders)";
-        db()->query($query, $this->attributes);
+        db()->query($query, $attributes);
         return db()->getInsertId();
     }
 

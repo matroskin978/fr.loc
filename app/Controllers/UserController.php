@@ -31,6 +31,12 @@ class UserController extends BaseController
     {
         $model = new User();
         $model->loadData();
+
+        if (request()->isAjax()) {
+            echo json_encode(['status' => 'success', 'data' => 'Thanks for registration']);
+            die;
+        }
+
         if (!$model->validate()) {
             session()->setFlash('error', 'Validation errors');
             session()->set('form_errors', $model->getErrors());
@@ -51,6 +57,16 @@ class UserController extends BaseController
     {
         return view('user/login', [
             'title' => 'Login page',
+            'styles' => [
+                base_url('/assets/css/test.css'),
+            ],
+            'header_scripts' => [
+                base_url('/assets/js/test.js'),
+                base_url('/assets/js/test2.js'),
+            ],
+            'footer_scripts' => [
+                base_url('/assets/js/test3.js'),
+            ],
         ]);
     }
 

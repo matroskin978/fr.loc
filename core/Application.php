@@ -34,13 +34,6 @@ class Application
 
     public function run(): void
     {
-        //$this->cache->remove('/users');
-        /*$page = $this->cache->get($this->request->rawUri);
-        if (!$page) {
-            $page = $this->router->dispatch();
-            $this->cache->set($this->request->rawUri, $page);
-        }
-        echo $page;*/
         echo $this->router->dispatch();
     }
 

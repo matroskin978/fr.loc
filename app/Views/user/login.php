@@ -1,5 +1,3 @@
-<?php
-
-//session()->setFlash('name', 'John');
-//dump(session()->getFlash('name'));
-
+<div class="container">
+    <h1>Login page</h1>
+</div>
