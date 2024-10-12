@@ -9,6 +9,7 @@
     <title>PHPFramework :: <?= $title ?? ''; ?></title>
     <link rel="icon" href="<?= base_url('/favicon.png'); ?>">
     <link rel="stylesheet" href="<?= base_url('/assets/bootstrap/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('/assets/iziModal/css/iziModal.min.css'); ?>">
 
     <?php if (!empty($styles)): ?>
         <?php foreach ($styles as $style): ?>
@@ -47,6 +48,7 @@ $content; ?>
 
 <script src="<?= base_url('/assets/js/jquery-3.7.1.min.js'); ?>"></script>
 <script src="<?= base_url('/assets/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+<script src="<?= base_url('/assets/iziModal/js/iziModal.min.js'); ?>"></script>
 
 <?php if (!empty($footer_scripts)): ?>
     <?php foreach ($footer_scripts as $footer_script): ?>
@@ -55,5 +57,9 @@ $content; ?>
 <?php endif; ?>
 
 <script src="<?= base_url('/assets/js/main.js'); ?>"></script>
+
+<div class="iziModal-alert-success"></div>
+<div class="iziModal-alert-error"></div>
+
 </body>
 </html>

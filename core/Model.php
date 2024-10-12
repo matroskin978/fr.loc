@@ -93,4 +93,16 @@ abstract class Model
         return $this->errors;
     }
 
+    public function listErrors(): string
+    {
+        $output = '<ul class="list-unstyled">';
+        foreach ($this->errors as $field_errors) {
+            foreach ($field_errors as $error) {
+                $output .= "<li>$error</li>";
+            }
+        }
+        $output .= "</ul>";
+        return $output;
+    }
+
 }

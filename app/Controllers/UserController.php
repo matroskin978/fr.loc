@@ -33,7 +33,17 @@ class UserController extends BaseController
         $model->loadData();
 
         if (request()->isAjax()) {
-            echo json_encode(['status' => 'success', 'data' => 'Thanks for registration']);
+            if (!$model->validate()) {
+                echo json_encode(['status' => 'error', 'data' => $model->listErrors()]);
+                die;
+            }
+
+            $model->attributes['password'] = password_hash($model->attributes['password'], PASSWORD_DEFAULT);
+            if ($id = $model->save()) {
+                echo json_encode(['status' => 'success', 'data' => 'Thanks for registration. Your ID: ' . $id, 'redirect' => base_url('/login')]);
+            } else {
+                echo json_encode(['status' => 'error', 'data' => 'Error registration']);
+            }
             die;
         }
 
