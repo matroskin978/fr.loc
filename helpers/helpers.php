@@ -25,6 +25,26 @@ function cache(): \PHPFramework\Cache
     return app()->cache;
 }
 
+function get_route_params(): array
+{
+    return app()->router->route_params;
+}
+
+function get_route_param($key, $default = ''): string
+{
+    return app()->router->route_params[$key] ?? $default;
+}
+
+function array_value_search($arr, $index, $value): int|string|null
+{
+    foreach ($arr as $k => $v) {
+        if ($v[$index] == $value) {
+            return $k;
+        }
+    }
+    return null;
+}
+
 function db(): \PHPFramework\Database
 {
     return app()->db;
