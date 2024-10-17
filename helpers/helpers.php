@@ -70,6 +70,25 @@ function base_url($path = ''): string
     return PATH . $path;
 }
 
+function base_href($path = ''): string
+{
+    if (app()->get('lang')['base'] != 1) {
+        return PATH . '/' . app()->get('lang')['code'] . $path;
+    }
+    return PATH . $path;
+}
+
+function uri_without_lang(): string
+{
+    $request_uri = request()->uri;
+    $request_uri = explode('/', $request_uri, 2);
+    if (array_key_exists($request_uri[0], LANGS)) {
+        unset($request_uri[0]);
+    }
+    $request_uri = implode('/', $request_uri);
+    return $request_uri ? '/' . $request_uri : '';
+}
+
 function get_alerts(): void
 {
     if (!empty($_SESSION['flash'])) {

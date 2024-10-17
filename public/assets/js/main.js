@@ -22,6 +22,20 @@ $(function () {
         headerColor: '#e53935'
     });
 
+    /*let form = document.querySelector('.ajax-form2');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let res = fetch('https://fr.loc/register', {
+            method: 'post',
+            body: new FormData(form),
+            headers: {'X-Requested-With': 'XMLHttpRequest'}
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            });
+    });*/
+
     $('.ajax-form').on('submit', function (e) {
         e.preventDefault();
 

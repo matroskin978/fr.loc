@@ -1,3 +1,8 @@
 RewriteEngine On
+
+# Redirect Trailing Slashes If Not A Folder...
+RewriteCond %{REQUEST_URI} (.+)/$
+RewriteRule ^ %1 [L,R=301]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule (.*) index.php?$1 [L,QSA]

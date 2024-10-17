@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <base href="<?= base_url('/'); ?>">
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -28,7 +29,7 @@
 
 <nav class="navbar navbar-expand-lg bg-dark mb-3" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="<?= base_href(); ?>">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,9 +38,32 @@
 
             <?= cache()->get('menu'); ?>
 
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <?= app()->get('lang')['title']; ?>
+                    </a>
+
+                    <?php $request_uri = uri_without_lang(); ?>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <?php foreach (LANGS as $k => $v): ?>
+                            <?php if (app()->get('lang')['code'] == $k) continue; ?>
+                            <?php if ($v['base'] == 1): ?>
+                                <li><a class="dropdown-item" href="<?= base_url("{$request_uri}"); ?>"><?= $v['title']; ?></a></li>
+                            <?php else: ?>
+                                <li><a class="dropdown-item" href="<?= base_url("/{$k}{$request_uri}"); ?>"><?= $v['title']; ?></a></li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </ul>
+                </li>
+            </ul>
+
         </div>
     </div>
 </nav>
+
+<img src="favicon.png" alt="fav" width="100">
 
 <?php get_alerts(); ?>
 <?= /** @var string $content */
