@@ -63,13 +63,9 @@
     </div>
 </nav>
 
-<img src="favicon.png" alt="fav" width="100">
-
 <?php get_alerts(); ?>
 <?= /** @var string $content */
 $content; ?>
-
-<?php dump(app()->get('lang')); ?>
 
 
 <script src="<?= base_url('/assets/js/jquery-3.7.1.min.js'); ?>"></script>

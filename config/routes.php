@@ -4,6 +4,7 @@
 
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
+use App\Controllers\PostController;
 
 const MIDDLEWARE = [
     'auth' => \PHPFramework\Middleware\Auth::class,
@@ -16,6 +17,7 @@ $app->router->get('/register', [UserController::class, 'register'])->middleware(
 $app->router->post('/register', [UserController::class, 'store'])->middleware(['guest']);
 $app->router->get('/login', [UserController::class, 'login'])->middleware(['guest']);
 $app->router->get('/users', [UserController::class, 'index']);
+$app->router->get('/posts', [PostController::class, 'index']);
 
 $app->router->get('/post/(?P<id>[0-9]+)', function () {
     dump(app()->router->route_params);

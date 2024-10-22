@@ -14,4 +14,7 @@
     <li class="nav-item">
         <a class="nav-link" aria-current="page" href="<?= base_href('/users'); ?>">Users</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="<?= base_href('/posts'); ?>">Posts</a>
+    </li>
 </ul>
