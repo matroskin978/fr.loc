@@ -19,9 +19,9 @@ $app->router->get('/login', [UserController::class, 'login'])->middleware(['gues
 $app->router->get('/users', [UserController::class, 'index']);
 $app->router->get('/posts', [PostController::class, 'index']);
 
-$app->router->get('/post/(?P<id>[0-9]+)', function () {
-    dump(app()->router->route_params);
-    return "Post " . get_route_param('id', 'test');
+$app->router->get('/post/(?P<slug>[a-z0-9-]+)', function () {
+    //dump(app()->router->route_params);
+    return "Post " . get_route_param('slug', 'test');
 });
 
 $app->router->get('/', [HomeController::class, 'index']);

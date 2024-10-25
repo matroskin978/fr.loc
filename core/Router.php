@@ -95,6 +95,7 @@ class Router
 
                 $lang = $lang ?: $base_lang;
                 app()->set('lang', LANGS[$lang]);
+                Language::load($route['callback']);
 
                 if (request()->isPost()) {
                     if ($route['needCsrfToken'] && !$this->checkCsrfToken()) {

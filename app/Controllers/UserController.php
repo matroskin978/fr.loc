@@ -40,7 +40,7 @@ class UserController extends BaseController
 
             $model->attributes['password'] = password_hash($model->attributes['password'], PASSWORD_DEFAULT);
             if ($id = $model->save()) {
-                echo json_encode(['status' => 'success', 'data' => 'Thanks for registration. Your ID: ' . $id, 'redirect' => base_url('/login')]);
+                echo json_encode(['status' => 'success', 'data' => sprintf(__('user_store_success'), $id), 'redirect' => base_href('/login')]);
             } else {
                 echo json_encode(['status' => 'error', 'data' => 'Error registration']);
             }
