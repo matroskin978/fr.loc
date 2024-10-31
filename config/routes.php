@@ -24,6 +24,7 @@ $app->router->get('/post/(?P<slug>[a-z0-9-]+)', function () {
     return "Post " . get_route_param('slug', 'test');
 });
 
+$app->router->get('/contact', [\App\Controllers\ContactController::class, 'index']);
 $app->router->get('/', [HomeController::class, 'index']);
 
 //dump(__FILE__ . __LINE__, $app->router->getRoutes());

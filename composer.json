@@ -10,6 +10,7 @@
     "symfony/var-dumper": "^7.1",
     "vlucas/valitron": "^1.4",
     "ext-pdo": "*",
-    "filp/whoops": "^2.15"
+    "filp/whoops": "^2.15",
+    "phpmailer/phpmailer": "^6.9"
   }
 }
