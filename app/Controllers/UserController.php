@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use PHPFramework\Auth;
 use PHPFramework\Pagination;
 
 class UserController extends BaseController
@@ -65,19 +66,55 @@ class UserController extends BaseController
 
     public function login()
     {
+        /*$credentials = [
+            'email' => 'admin2@mail.com',
+            'password' => '123',
+        ];
+
+        dump($credentials);
+        $password = $credentials['password'];
+        unset($credentials['password']);
+        $field = array_key_first($credentials);
+        $value = $credentials[$field];
+        dump($field);
+        dump($value);
+        dump($password);
+
+        $user = db()->findOne('users', $value, $field);
+        dump($user);*/
+
         return view('user/login', [
             'title' => 'Login page',
-            'styles' => [
-                base_url('/assets/css/test.css'),
-            ],
-            'header_scripts' => [
-                base_url('/assets/js/test.js'),
-                base_url('/assets/js/test2.js'),
-            ],
-            'footer_scripts' => [
-                base_url('/assets/js/test3.js'),
-            ],
         ]);
+    }
+
+    public function auth()
+    {
+        $model = new User();
+        $model->loadData();
+
+        if (!$model->validate($model->attributes, [
+            'required' => ['email', 'password'],
+        ])) {
+            echo json_encode(['status' => 'error', 'data' => $model->listErrors()]);
+            die;
+        }
+
+        if (Auth::login([
+            'email' => $model->attributes['email'],
+            'password' => $model->attributes['password'],
+        ])) {
+            echo json_encode(['status' => 'success', 'data' => 'Success login', 'redirect' => base_href('/dashboard')]);
+        } else {
+            echo json_encode(['status' => 'error', 'data' => 'Wrong email or password']);
+        }
+        die;
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        response()->redirect(base_href('/login'));
     }
 
     public function index()

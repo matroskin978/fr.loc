@@ -30,6 +30,7 @@ class Application
         $this->cache = new Cache();
         $this->generateCsrfToken();
         $this->db = new Database();
+        Auth::setUser();
     }
 
     public function run(): void

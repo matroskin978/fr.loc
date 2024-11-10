@@ -143,7 +143,17 @@ function get_csrf_meta(): string
 
 function check_auth(): bool
 {
-    return false;
+    return \PHPFramework\Auth::isAuth();
+}
+
+function get_user()
+{
+    return \PHPFramework\Auth::user();
+}
+
+function logout()
+{
+    \PHPFramework\Auth::logout();
 }
 
 function _e($key): void

@@ -39,6 +39,20 @@
             <?= cache()->get('menu'); ?>
 
             <ul class="navbar-nav">
+
+                <?php if (check_auth()): ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Hello, <?= get_user()['name']; ?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item"
+                                   href="<?= base_href('/logout'); ?>">Logout</a></li>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
@@ -50,9 +64,11 @@
                         <?php foreach (LANGS as $k => $v): ?>
                             <?php if (app()->get('lang')['code'] == $k) continue; ?>
                             <?php if ($v['base'] == 1): ?>
-                                <li><a class="dropdown-item" href="<?= base_url("{$request_uri}"); ?>"><?= $v['title']; ?></a></li>
+                                <li><a class="dropdown-item"
+                                       href="<?= base_url("{$request_uri}"); ?>"><?= $v['title']; ?></a></li>
                             <?php else: ?>
-                                <li><a class="dropdown-item" href="<?= base_url("/{$k}{$request_uri}"); ?>"><?= $v['title']; ?></a></li>
+                                <li><a class="dropdown-item"
+                                       href="<?= base_url("/{$k}{$request_uri}"); ?>"><?= $v['title']; ?></a></li>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </ul>
