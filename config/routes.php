@@ -11,6 +11,10 @@ const MIDDLEWARE = [
     'guest' => \PHPFramework\Middleware\Guest::class,
 ];
 
+$app->router->add('/api/v1/test', function () {
+    response()->json(['status' => 'ok', 'message' => 'Success page']);
+}, ['get', 'post', 'put'])->withoutCsrfToken();
+
 $app->router->get('/api/v1/categories', [\App\Controllers\Api\V1\CategoryController::class, 'index'])->withoutCsrfToken();
 $app->router->get('/api/v1/categories/(?P<slug>[a-z0-9-]+)', [\App\Controllers\Api\V1\CategoryController::class, 'view']);
 

@@ -42,6 +42,7 @@ class Auth
     public static function logout(): void
     {
         session()->remove('user');
+        response()->redirect(base_href('/login'));
     }
 
     public static function setUser(): void

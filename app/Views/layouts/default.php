@@ -36,7 +36,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <?= cache()->get('menu'); ?>
+            <?//= cache()->get('menu'); ?>
+
+            <?php echo view()->renderPartial('incs/menu'); ?>
 
             <ul class="navbar-nav">
 
