@@ -40,9 +40,16 @@ class Router
         return $this->add($path, $callback, 'GET');
     }
 
+
+
     public function post($path, $callback): self
     {
         return $this->add($path, $callback, 'POST');
+    }
+
+    public function put($path, $callback): self
+    {
+        return $this->add($path, $callback, 'PUT');
     }
 
     public function getRoutes(): array
@@ -75,9 +82,16 @@ class Router
             }
             if (
                 preg_match($pattern, "/{$path}", $matches)
-                &&
-                in_array($this->request->getMethod(), $route['method'])
+                //&&
+                //in_array($this->request->getMethod(), $route['method'])
             ) {
+
+                if (!in_array($this->request->getMethod(), $route['method'])) {
+                    if ($_SERVER['HTTP_ACCEPT'] == 'application/json') {
+                        response()->json(['status' => 'error', 'answer' => 'Method not allowed'], 405);
+                    }
+                    abort('Method Not Allowed', 405);
+                }
 
                 foreach ($matches as $k => $v) {
                     if (is_string($k)) {

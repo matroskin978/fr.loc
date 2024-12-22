@@ -11,6 +11,9 @@ const MIDDLEWARE = [
     'guest' => \PHPFramework\Middleware\Guest::class,
 ];
 
+$app->router->get('/api/v1/categories', [\App\Controllers\Api\V1\CategoryController::class, 'index'])->withoutCsrfToken();
+$app->router->get('/api/v1/categories/(?P<slug>[a-z0-9-]+)', [\App\Controllers\Api\V1\CategoryController::class, 'view']);
+
 
 $app->router->get('/dashboard', [HomeController::class, 'dashboard'])->middleware(['auth']);
 $app->router->get('/register', [UserController::class, 'register'])->middleware(['guest']);
