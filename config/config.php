@@ -11,6 +11,7 @@ const VIEWS = APP . '/Views';
 const ERROR_LOGS = ROOT . '/tmp/error.log';
 const CACHE = ROOT . '/tmp/cache';
 const LAYOUT = 'default';
+const UPLOADS = WWW . '/uploads';
 const PATH = 'https://fr.loc';
 
 const DB_SETTINGS = [

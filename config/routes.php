@@ -11,6 +11,9 @@ const MIDDLEWARE = [
     'guest' => \PHPFramework\Middleware\Guest::class,
 ];
 
+$app->router->get('/test', [\App\Controllers\TestController::class, 'index']);
+$app->router->post('/test', [\App\Controllers\TestController::class, 'send']);
+
 $app->router->add('/api/v1/test', function () {
     response()->json(['status' => 'ok', 'message' => 'Success page']);
 }, ['get', 'post', 'put'])->withoutCsrfToken();
