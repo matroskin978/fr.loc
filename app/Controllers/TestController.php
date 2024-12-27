@@ -16,6 +16,11 @@ class TestController
 
     public function send()
     {
+        /*for ($i = 0; $i < count(request()->files['my-files']['name']); $i++) {
+            $files = new File("my-files.{$i}");
+            dump($files->save());
+        }*/
+
         $file = new File('my-file');
         dump($file->save());
     }
